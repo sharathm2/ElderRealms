@@ -1,0 +1,71 @@
+using wServer.logic.behaviors;
+using wServer.logic.loot;
+using wServer.logic.transitions;
+
+#endregion
+
+Namespace wServer.logic
+{
+    Partial Class BehaviorDb
+    {
+        private _ ElderRealms = () => Behav()
+            .Init("EPirate",
+                new State(
+                    new Prioritize(
+                        new Follow(0.85, range: 1, duration: 5000, coolDown: 0),
+                        new Wander(0.4)
+                        ),
+                    new Shoot(3, projectileIndex: 1, coolDown: 2500),
+                    new Shoot(3, projectileIndex: 2, coolDown: 3000)
+                    ),
+            new MostDamagers(7,
+                 new OnlyOne(
+                new TierLoot(7, ItemType.Weapon, normalloot),
+                new TierLoot(8, ItemType.Armor, normalloot),
+                new TierLoot(3, ItemType.Ring, normalloot),
+                new ItemLoot("Ravenheart Sword" cyanBag)
+                      )
+                )
+            ;
+    }
+
+
+
+
+
+
+
+
+        <Object type = "0x6000" id="Elder Pirate">
+   <DisplayId>Elder Pirate</DisplayId>
+   <Class>Character</Class>
+   <Enemy/>
+    <AnimatedTexture>
+        <File>???</File>            // Do these when added
+        <Index>???</Index>
+    </AnimatedTexture>
+   <Size>90</Size>
+   <MaxHitPoints>3000</MaxHitPoints>
+   <Defense>20</Defense>
+   <StasisImmune/>
+   <Level>1</Level>
+   <XpMult>0.5</XpMult>
+   <AltTexture id = "1" >
+     < Texture >
+       < File > ??? </ File >               // do these when added
+       < Index > ??? </ Index >
+     </ Texture >
+   </ AltTexture >
+   < Projectile id="1">
+     <ObjectId>White Bolt</ObjectId>        //check this
+     <Speed>80</Speed>
+     <Damage>50</Damage>
+     <LifetimeMS>2000</LifetimeMS>
+   </ Projectile >
+   < Projectile id="2">
+      <ObjectId>Purple Bolt</ObjectId>      //check this
+      <Speed>70</Speed>
+      <Damage>100</Damage>
+      <LifetimeMS>1400</LifetimeMS>
+      <ConditionEffect duration = "2" > Sick </ ConditionEffect >
+    </ Projectile >
